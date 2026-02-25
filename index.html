@@ -19,7 +19,8 @@
             --gold: #fbbf24;          
             --yoga: #10b981;          
             --edu: #8b5cf6;           
-            --tuition: #f43f5e;       
+            --tuition: #f43f5e;
+            --med: #ef4444; /* New Color for Medicine */
             
             --bg-body: #020617;       
             --bg-card: #0f172a;       
@@ -125,23 +126,6 @@
             transition: color 0.3s;
         }
         .btn-details:hover { color: var(--primary); }
-        .btn-details.active-btn { color: var(--primary); font-weight: 600; text-decoration: none; }
-
-        /* Smooth Hidden Section Styling */
-        .hidden-details {
-            max-height: 0; opacity: 0; overflow: hidden;
-            transition: max-height 0.4s ease-out, opacity 0.4s ease, padding 0.4s ease, margin 0.4s ease;
-            background: rgba(128,128,128,0.05);
-            border-radius: 10px; font-size: 0.85rem; color: var(--text-muted);
-            padding: 0 15px; margin-top: 0;
-        }
-        
-        .hidden-details.open {
-            max-height: 500px; opacity: 1; padding: 15px; margin-top: 15px;
-            border-top: 1px solid rgba(128,128,128,0.1);
-        }
-        .hidden-details ul { margin-left: 20px; }
-        .hidden-details li { margin-bottom: 5px; }
         
         /* Nav */
         .top-nav {
@@ -347,6 +331,17 @@
         }
         .founder-quote i { position: absolute; top: 20px; left: 20px; font-size: 3rem; opacity: 0.1; }
         .quote-author { display: block; margin-top: 15px; font-weight: 700; color: var(--primary); font-style: normal; }
+        
+        /* --- NEW: SERVICES TAB STYLES --- */
+        .service-detail-card {
+            background: var(--bg-card); border: var(--border); border-radius: var(--radius);
+            padding: 30px; margin-bottom: 30px; transition: 0.3s;
+        }
+        .service-detail-card.highlight { border-color: var(--primary); box-shadow: 0 0 30px rgba(59, 130, 246, 0.2); }
+        .service-detail-header { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(128,128,128,0.1); padding-bottom: 15px; }
+        .service-detail-icon { font-size: 2rem; color: var(--primary); width: 60px; height: 60px; background: rgba(128,128,128,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .service-detail-list li { margin-bottom: 10px; color: var(--text-muted); list-style: none; display: flex; gap: 10px; }
+        .service-detail-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary); }
 
         /* --- 7. FOOTER --- */
         footer {
@@ -447,7 +442,7 @@
         <div class="desktop-menu">
             <span class="nav-link active" onclick="nav('home')">Home</span>
             <span class="nav-link" onclick="nav('vendors')">Partners</span>
-            <span class="nav-link" onclick="nav('about')">About</span>
+            <span class="nav-link" onclick="nav('services')">Our Services</span> <span class="nav-link" onclick="nav('about')">About</span>
             <span class="nav-link" onclick="nav('register')">Join Us</span>
         </div>
     </nav>
@@ -456,7 +451,7 @@
         <div class="b-links">
             <div class="b-item active" onclick="nav('home')"><i class="fas fa-home"></i> Home</div>
             <div class="b-item" onclick="nav('vendors')"><i class="fas fa-store"></i> Partners</div>
-            <div class="b-item" onclick="nav('about')"><i class="fas fa-info-circle"></i> About</div>
+            <div class="b-item" onclick="nav('services')"><i class="fas fa-list-check"></i> Services</div> <div class="b-item" onclick="nav('about')"><i class="fas fa-info-circle"></i> About</div>
             <div class="b-item" onclick="nav('register')"><i class="fas fa-user-plus"></i> Join</div>
         </div>
     </nav>
@@ -476,16 +471,7 @@
     <div id="home" class="tab-content active">
         
         <div class="hero-wrapper">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1599447421405-0c323d27bc5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581092921461-eab62e97a780?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1582510003544-bea8e1e9ddb5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
-
-            <button class="slider-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1528498033381-8b067f53f9eb?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1626014903700-1c911a3b841d?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1400&auto=format&fit=crop');"></div> <button class="slider-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
             
             <div class="hero-overlay">
@@ -527,24 +513,27 @@
         <main>
             
             <div class="section-head">
-                <div><h2>Health & Nutrition</h2><p>Yoga, Fresh Food & Monthly Ration</p></div>
+                <div><h2>Health & Nutrition</h2><p>Yoga, Fresh Food & Medicines</p></div>
             </div>
             
             <div class="grid-3" id="grid-health">
+                <div class="card" style="border-left: 4px solid var(--med);">
+                    <div class="icon-box" style="color: var(--med);"><i class="fas fa-pills"></i></div>
+                    <h3>Medicines Delivery</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Prescription Medicines at Doorstep.</p>
+                    <div class="btn-group">
+                        <button class="btn-book" onclick="openForm('medicine')">Order Now <i class="fas fa-chevron-right"></i></button>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-med')">View Details</button>
+                    </div>
+                </div>
+
                 <div class="card bg-yoga" style="border-left: 4px solid var(--yoga);">
                     <div class="icon-box" style="color: var(--yoga);"><i class="fas fa-spa"></i></div>
                     <h3>Yoga & Pranayam</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Mental peace. Patanjali Yoga @ Gita Bhavan.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('yoga')">Join Session <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-yoga', this)">View Details</button>
-                    </div>
-                    <div id="det-yoga" class="hidden-details">
-                        <ul>
-                            <li>Time: 5:30 AM - 7:00 AM</li>
-                            <li>Location: Gita Bhavan, Khordha</li>
-                            <li>Trainer: Certified Patanjali Expert</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-yoga')">View Details</button>
                     </div>
                 </div>
 
@@ -554,14 +543,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Omfed, Pragati & Farm Milk.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('milk')">Order Milk <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-milk', this)">View Details</button>
-                    </div>
-                    <div id="det-milk" class="hidden-details">
-                        <ul>
-                            <li>Cow Milk: ₹50/L</li>
-                            <li>Paneer: ₹380/kg</li>
-                            <li>Morning Delivery: 6 AM - 8 AM</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-milk')">View Details</button>
                     </div>
                 </div>
 
@@ -571,14 +553,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Direct from Haat. Washed & Sorted.</p>
                     <div class="btn-group">
                         <a class="btn-book" href="https://docs.google.com/forms/d/e/1FAIpQLSdgcY7qdtwz7CRpuC-XGFBBtSVNOl-ZkCel2X_Gx80tJsB5Sw/viewform?usp=header">Buy Veggies <i class="fas fa-chevron-right"></i></a>
-                        <button class="btn-details" onclick="toggleDetails('det-veg', this)">View Details</button>
-                    </div>
-                    <div id="det-veg" class="hidden-details">
-                        <ul>
-                            <li>Seasonal Veggies available</li>
-                            <li>Washed with Ozone water</li>
-                            <li>Min Order: ₹100</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-veg')">View Details</button>
                     </div>
                 </div>
 
@@ -588,14 +563,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Puri, Upma, Dahibara. Hot & Fresh.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="https://docs.google.com/forms/d/e/1FAIpQLSdgcY7qdtwz7CRpuC-XGFBBtSVNOl-ZkCel2X_Gx80tJsB5Sw/viewform?usp=header">Order Food <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-bf', this)">View Details</button>
-                    </div>
-                     <div id="det-bf" class="hidden-details">
-                        <ul>
-                            <li>Dahibara Aloodum: ₹50/plate</li>
-                            <li>Puri Upma: ₹40/plate</li>
-                            <li>From Verified Local Vendors</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-bf')">View Details</button>
                     </div>
                 </div>
 
@@ -605,14 +573,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Rice, Dal, Oil & Spices. Doorstep.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('food')">Order Ration <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-grocery', this)">View Details</button>
-                    </div>
-                     <div id="det-grocery" class="hidden-details">
-                        <ul>
-                            <li>Best Market Prices</li>
-                            <li>Bulk Order Discount</li>
-                            <li>Scheduled Monthly Delivery</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-grocery')">View Details</button>
                     </div>
                 </div>
             </div>
@@ -652,14 +613,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Quality School Education (Play-10th).</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('school')">Admissions <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-skill', this)">View Details</button>
-                    </div>
-                    <div id="det-skill" class="hidden-details">
-                        <ul>
-                            <li>Play Group to Standard 10</li>
-                            <li>CBSE Curriculum</li>
-                            <li>Focus on Holistic Growth</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-skill')">View Details</button>
                     </div>
                 </div>
 
@@ -669,14 +623,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Coaching Center New Delhi (Online).</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('tuition')">Book Demo <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-pf', this)">View Details</button>
-                    </div>
-                    <div id="det-pf" class="hidden-details">
-                        <ul>
-                            <li>Classes: 10th, 11th, 12th</li>
-                            <li>JEE / NEET Preparation</li>
-                            <li>Expert Faculty from Delhi</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-pf')">View Details</button>
                     </div>
                 </div>
 
@@ -686,14 +633,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Computer Education Institute.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('computer')">Enroll Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-kv', this)">View Details</button>
-                    </div>
-                    <div id="det-kv" class="hidden-details">
-                        <ul>
-                            <li>DCA, PGDCA, Tally courses</li>
-                            <li>Practical Labs available</li>
-                            <li>Certificate Recognized</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-kv')">View Details</button>
                     </div>
                 </div>
             </div>
@@ -709,14 +649,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Wiring, Inverter, Fan Repair.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('electrician')">Book Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-elec', this)">View Details</button>
-                    </div>
-                    <div id="det-elec" class="hidden-details">
-                        <ul>
-                            <li>Visit Charge: ₹200</li>
-                            <li>Wiring/Inverter Setup</li>
-                            <li>Certified Technicians</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-elec')">View Details</button>
                     </div>
                 </div>
 
@@ -726,14 +659,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Leakage, Motor, Tap Fitting.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('plumber')">Book Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-plum', this)">View Details</button>
-                    </div>
-                     <div id="det-plum" class="hidden-details">
-                        <ul>
-                            <li>Visit Charge: ₹200</li>
-                            <li>Tank Cleaning / Motor Install</li>
-                            <li>Quick Response</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-plum')">View Details</button>
                     </div>
                 </div>
                 
@@ -743,14 +669,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Furniture Repair & New Work.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('carpenter')">Book Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-carp', this)">View Details</button>
-                    </div>
-                     <div id="det-carp" class="hidden-details">
-                        <ul>
-                            <li>Door/Window Repair</li>
-                            <li>Custom Furniture</li>
-                            <li>Polishing Works</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-carp')">View Details</button>
                     </div>
                 </div>
 
@@ -760,14 +679,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Filter Change & Repair.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('ro')">Book Service <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-ro', this)">View Details</button>
-                    </div>
-                     <div id="det-ro" class="hidden-details">
-                        <ul>
-                            <li>All Brands Serviced</li>
-                            <li>Filter Cartridge Change</li>
-                            <li>Installation/Uninstallation</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-ro')">View Details</button>
                     </div>
                 </div>
 
@@ -777,14 +689,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Home Makeover & Design.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('interior')">Consult Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-interior', this)">View Details</button>
-                    </div>
-                     <div id="det-interior" class="hidden-details">
-                        <ul>
-                            <li>False Ceiling / Painting</li>
-                            <li>Modular Kitchen</li>
-                            <li>Space Planning</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-interior')">View Details</button>
                     </div>
                 </div>
 
@@ -794,14 +699,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Flooring & Fitting Service.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('tile')">Book Mistri <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-tile', this)">View Details</button>
-                    </div>
-                     <div id="det-tile" class="hidden-details">
-                        <ul>
-                            <li>Floor Tiling / Granite</li>
-                            <li>Bathroom Renovation</li>
-                            <li>Experienced Masons</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-tile')">View Details</button>
                     </div>
                 </div>
 
@@ -811,14 +709,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Construction & Renovation.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('civil')">Contact Us <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-civil', this)">View Details</button>
-                    </div>
-                     <div id="det-civil" class="hidden-details">
-                        <ul>
-                            <li>Home Construction</li>
-                            <li>Plastering / Repairs</li>
-                            <li>Reliable Contractors</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-civil')">View Details</button>
                     </div>
                 </div>
 
@@ -828,14 +719,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Repair & Breakdown Support.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('bike')">Request Help <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-bike', this)">View Details</button>
-                    </div>
-                     <div id="det-bike" class="hidden-details">
-                        <ul>
-                            <li>Two-Wheeler Servicing</li>
-                            <li>EV Battery/Motor Check</li>
-                            <li>Puncture/Breakdown</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-bike')">View Details</button>
                     </div>
                 </div>
 
@@ -845,14 +729,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Hardware Repair & Security.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('it')">Book Techie <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-it', this)">View Details</button>
-                    </div>
-                     <div id="det-it" class="hidden-details">
-                        <ul>
-                            <li>Laptop/PC Repair</li>
-                            <li>CCTV Camera Installation</li>
-                            <li>Networking Solutions</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-it')">View Details</button>
                     </div>
                 </div>
 
@@ -862,14 +739,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Aadhaar, PAN, Xerox at Home.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('janaseva')">Book Service <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-jana', this)">View Details</button>
-                    </div>
-                    <div id="det-jana" class="hidden-details">
-                        <ul>
-                            <li>Aadhaar Update / Print</li>
-                            <li>PAN Card Application</li>
-                            <li>Income/Caste Certificate</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-jana')">View Details</button>
                     </div>
                 </div>
 
@@ -879,14 +749,7 @@
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Find authentic employees.</p>
                     <div class="btn-group">
                         <button class="btn-book" onclick="openForm('consultant')">Hire Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="toggleDetails('det-staff', this)">View Details</button>
-                    </div>
-                     <div id="det-staff" class="hidden-details">
-                        <ul>
-                            <li>Cook / Maid / Driver</li>
-                            <li>Office Staff / Sales</li>
-                            <li>Background Verified</li>
-                        </ul>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-staff')">View Details</button>
                     </div>
                 </div>
             </div>
@@ -905,14 +768,7 @@
                 </div>
                 <div style="margin-top: 20px;">
                     <button class="btn-book" onclick="openForm('solar')">Apply Now <i class="fas fa-chevron-right"></i></button>
-                    <button class="btn-details" onclick="toggleDetails('det-solar', this)">View Details</button>
-                </div>
-                 <div id="det-solar" class="hidden-details">
-                    <ul>
-                        <li>Muft Bijli Yojana Registration</li>
-                        <li>Subsidy Assistance up to ₹78,000</li>
-                        <li>Vendor Connection</li>
-                    </ul>
+                    <button class="btn-details" onclick="viewServiceDetail('svc-solar')">View Details</button>
                 </div>
             </div>
 
@@ -930,14 +786,7 @@
                 </div>
                 <div style="margin-top: 20px;">
                     <button class="btn-book" onclick="openForm('travel')">Book Ride <i class="fas fa-chevron-right"></i></button>
-                    <button class="btn-details" onclick="toggleDetails('det-travel', this)">View Details</button>
-                </div>
-                 <div id="det-travel" class="hidden-details">
-                    <ul>
-                        <li>Local Sightseeing Packages</li>
-                        <li>Outstation Cabs (AC/Non-AC)</li>
-                        <li>Authentic Local Guides</li>
-                    </ul>
+                    <button class="btn-details" onclick="viewServiceDetail('svc-travel')">View Details</button>
                 </div>
             </div>
 
@@ -956,6 +805,281 @@
                 </div>
             </div>
 
+        </main>
+    </div>
+
+    <div id="services" class="tab-content">
+        <main style="padding-top: 40px;">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2>Our Service Details</h2>
+                <p style="color: var(--text-muted);">Detailed pricing and information for all our offerings.</p>
+            </div>
+
+            <div class="grid-3">
+                <div id="svc-med" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-pills"></i></div>
+                        <h3>Medicines</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>All Prescription Medicines</li>
+                        <li>Same Day Delivery</li>
+                        <li>10-20% Discount on MRP</li>
+                    </ul>
+                </div>
+
+                <div id="svc-yoga" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-spa"></i></div>
+                        <h3>Yoga & Pranayam</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Time: 5:30 AM - 7:00 AM</li>
+                        <li>Location: Gita Bhavan, Khordha</li>
+                        <li>Trainer: Certified Patanjali Expert</li>
+                    </ul>
+                </div>
+
+                <div id="svc-milk" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-bottle-droplet"></i></div>
+                        <h3>Fresh Milk</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Cow Milk: ₹50/L</li>
+                        <li>Paneer: ₹380/kg</li>
+                        <li>Morning Delivery: 6 AM - 8 AM</li>
+                    </ul>
+                </div>
+
+                <div id="svc-veg" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-carrot"></i></div>
+                        <h3>Farm Vegetables</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Seasonal Veggies available</li>
+                        <li>Washed with Ozone water</li>
+                        <li>Min Order: ₹100</li>
+                    </ul>
+                </div>
+
+                <div id="svc-bf" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Odia Breakfast</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Dahibara Aloodum: ₹50/plate</li>
+                        <li>Puri Upma: ₹40/plate</li>
+                        <li>From Verified Local Vendors</li>
+                    </ul>
+                </div>
+
+                <div id="svc-grocery" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-basket-shopping"></i></div>
+                        <h3>Groceries</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Best Market Prices</li>
+                        <li>Bulk Order Discount</li>
+                        <li>Scheduled Monthly Delivery</li>
+                    </ul>
+                </div>
+
+                <div id="svc-skill" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>Skill International</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Play Group to Standard 10</li>
+                        <li>CBSE Curriculum</li>
+                        <li>Focus on Holistic Growth</li>
+                    </ul>
+                </div>
+
+                <div id="svc-pf" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-chalkboard-user"></i></div>
+                        <h3>Path Finder</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Classes: 10th, 11th, 12th</li>
+                        <li>JEE / NEET Preparation</li>
+                        <li>Expert Faculty from Delhi</li>
+                    </ul>
+                </div>
+
+                <div id="svc-kv" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Kalinga Vikash</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>DCA, PGDCA, Tally courses</li>
+                        <li>Practical Labs available</li>
+                        <li>Certificate Recognized</li>
+                    </ul>
+                </div>
+
+                <div id="svc-elec" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Electrician</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Visit Charge: ₹200</li>
+                        <li>Wiring/Inverter Setup</li>
+                        <li>Certified Technicians</li>
+                    </ul>
+                </div>
+
+                <div id="svc-plum" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-faucet"></i></div>
+                        <h3>Plumber</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Visit Charge: ₹200</li>
+                        <li>Tank Cleaning / Motor Install</li>
+                        <li>Quick Response</li>
+                    </ul>
+                </div>
+
+                <div id="svc-carp" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-hammer"></i></div>
+                        <h3>Carpenter</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Door/Window Repair</li>
+                        <li>Custom Furniture</li>
+                        <li>Polishing Works</li>
+                    </ul>
+                </div>
+
+                <div id="svc-ro" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-glass-water"></i></div>
+                        <h3>RO Service</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>All Brands Serviced</li>
+                        <li>Filter Cartridge Change</li>
+                        <li>Installation/Uninstallation</li>
+                    </ul>
+                </div>
+
+                <div id="svc-interior" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-couch"></i></div>
+                        <h3>Interior</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>False Ceiling / Painting</li>
+                        <li>Modular Kitchen</li>
+                        <li>Space Planning</li>
+                    </ul>
+                </div>
+
+                <div id="svc-tile" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-layer-group"></i></div>
+                        <h3>Tile & Marble</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Floor Tiling / Granite</li>
+                        <li>Bathroom Renovation</li>
+                        <li>Experienced Masons</li>
+                    </ul>
+                </div>
+
+                <div id="svc-civil" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-trowel-bricks"></i></div>
+                        <h3>Civil Works</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Home Construction</li>
+                        <li>Plastering / Repairs</li>
+                        <li>Reliable Contractors</li>
+                    </ul>
+                </div>
+
+                <div id="svc-bike" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-motorcycle"></i></div>
+                        <h3>Bike & EV</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Two-Wheeler Servicing</li>
+                        <li>EV Battery/Motor Check</li>
+                        <li>Puncture/Breakdown</li>
+                    </ul>
+                </div>
+
+                <div id="svc-it" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-microchip"></i></div>
+                        <h3>Computer & CCTV</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Laptop/PC Repair</li>
+                        <li>CCTV Camera Installation</li>
+                        <li>Networking Solutions</li>
+                    </ul>
+                </div>
+
+                <div id="svc-jana" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3>Jana Seva Kendra</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Aadhaar Update / Print</li>
+                        <li>PAN Card Application</li>
+                        <li>Income/Caste Certificate</li>
+                    </ul>
+                </div>
+
+                <div id="svc-staff" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-user-tie"></i></div>
+                        <h3>Consultant</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Cook / Maid / Driver</li>
+                        <li>Office Staff / Sales</li>
+                        <li>Background Verified</li>
+                    </ul>
+                </div>
+
+                <div id="svc-solar" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-solar-panel"></i></div>
+                        <h3>PM Surya Ghar</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Muft Bijli Yojana Registration</li>
+                        <li>Subsidy Assistance up to ₹78,000</li>
+                        <li>Vendor Connection</li>
+                    </ul>
+                </div>
+
+                <div id="svc-travel" class="service-detail-card">
+                    <div class="service-detail-header">
+                        <div class="service-detail-icon"><i class="fas fa-car-side"></i></div>
+                        <h3>Authentic Travel</h3>
+                    </div>
+                    <ul class="service-detail-list">
+                        <li>Local Sightseeing Packages</li>
+                        <li>Outstation Cabs (AC/Non-AC)</li>
+                        <li>Authentic Local Guides</li>
+                    </ul>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -1071,30 +1195,37 @@
     </footer>
 
     <script type="text/javascript">
+        // --- GOOGLE TRANSLATE CONFIG ---
+        // Restricted to English, Hindi, Odia.
+        // Attempting to set cookie to force Odia default if not present.
         function googleTranslateElementInit() {
-          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            // Set Cookie to Odia if it doesn't exist
+            if (document.cookie.indexOf('googtrans=/en/or') === -1 && document.cookie.indexOf('googtrans') === -1) {
+                document.cookie = "googtrans=/en/or";
+                document.cookie = "googtrans=/en/or; domain=." + document.domain;
+            }
+
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'en,hi,or', // Only English, Hindi, Odia
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
         // --- SOUND EFFECT ---
-        // A short, futuristic "bloop" sound encoded in base64 to avoid external dependencies
-        const hoverSound = new Audio("data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU"); // Placeholder init
-        // Real short beep data
-        const sfx = new Audio("data:audio/wav;base64,UklGRjIAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YRAAAACQB5bnmc+Zz5nPgM+A");
-        // Using a more robust generated beep for demonstration (Base64 is tricky to paste fully, simulating with logic below)
-        
-        // Actually creating a soft oscillator beep using Web Audio API for better quality without large Base64 strings
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playHoverSound() {
             if (audioCtx.state === 'suspended') { audioCtx.resume(); }
             const oscillator = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
             oscillator.type = 'sine';
-            oscillator.frequency.setValueAtTime(400, audioCtx.currentTime); // 400Hz beep
+            oscillator.frequency.setValueAtTime(400, audioCtx.currentTime); 
             oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
-            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); // Low volume
+            gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime); 
             gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
             oscillator.connect(gainNode);
             gainNode.connect(audioCtx.destination);
@@ -1102,16 +1233,13 @@
             oscillator.stop(audioCtx.currentTime + 0.1);
         }
 
-        // Attach Sound to Cards
         document.querySelectorAll('.card, .vision-card, .btn-book').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                // Browser policy requires user interaction first. 
-                // This will play only after user has clicked somewhere on page once.
                 playHoverSound();
             });
         });
 
-        // --- ANIMATION OBSERVER (Left/Right Flow) ---
+        // --- ANIMATION OBSERVER ---
         const observerOptions = {
             threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
@@ -1121,18 +1249,17 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('card-anim-active');
-                    observer.unobserve(entry.target); // Only animate once
+                    observer.unobserve(entry.target); 
                 }
             });
         }, observerOptions);
 
-        // Apply animations to grids
-        // We will alternate Left/Right based on index in the specific grid
         function applyAnimations(gridId) {
             const grid = document.getElementById(gridId);
             if(!grid) return;
-            const cards = grid.querySelectorAll('.card, .vision-card, .legend-item');
+            const cards = grid.querySelectorAll('.card, .vision-card, .legend-item, .service-detail-card');
             cards.forEach((card, index) => {
+                card.classList.remove('card-anim-left', 'card-anim-right', 'card-anim-active'); // Reset for re-animation on tab switch
                 if (index % 2 === 0) {
                     card.classList.add('card-anim-left');
                 } else {
@@ -1142,18 +1269,12 @@
             });
         }
         
-        // Wait for content to exist
         setTimeout(() => {
             applyAnimations('grid-health');
             applyAnimations('grid-edu');
             applyAnimations('grid-service');
             applyAnimations('grid-legend');
-            
-            // Also animate standalone cards manually found
-            document.querySelectorAll('.vision-card').forEach((c, i) => {
-                 // Classes already added in HTML for About section, just observe
-                 observer.observe(c);
-            });
+            document.querySelectorAll('.vision-card').forEach((c) => observer.observe(c));
         }, 100);
 
 
@@ -1174,7 +1295,6 @@
             }
         }
         
-        // Check saved theme
         const savedTheme = localStorage.getItem('theme');
         if(savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1199,6 +1319,7 @@
 
         // --- LINKS & MODAL LOGIC ---
         const links = {
+            'medicine': '#', // Medicine Link
             'milk': '#', 'veg': '#', 'food': '#', 'solar': '#', 'consultant': '#',
             'travel': '#', 'electrician': '#', 'plumber': '#', 'janaseva': '#',
             'yoga': '#', 'school': '#', 'computer': '#', 'tuition': '#',
@@ -1207,7 +1328,6 @@
             'register_vendor': '#', 'register_service': '#', 'register_job': '#', 'register_edu': '#'
         };
 
-        // New Modal Functions
         const modal = document.getElementById('customModal');
         
         function openForm(type) {
@@ -1239,24 +1359,25 @@
             }
         });
 
-        // --- TOGGLE DETAILS ---
-        function toggleDetails(id, btn) {
-            const content = document.getElementById(id);
-            if (!content) return;
-            const isOpen = content.classList.contains('open');
-            if (isOpen) {
-                content.classList.remove('open');
-                if(btn) {
-                    btn.innerHTML = 'View Details';
-                    btn.classList.remove('active-btn');
+        // --- VIEW DETAILS REDIRECTION ---
+        function viewServiceDetail(serviceId) {
+            // 1. Switch to Services tab
+            nav('services');
+            
+            // 2. Find the element
+            setTimeout(() => {
+                const element = document.getElementById(serviceId);
+                if(element) {
+                    // 3. Scroll to it
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // 4. Highlight it momentarily
+                    element.classList.add('highlight');
+                    setTimeout(() => {
+                        element.classList.remove('highlight');
+                    }, 2000);
                 }
-            } else {
-                content.classList.add('open');
-                if(btn) {
-                    btn.innerHTML = '<i class="fas fa-times"></i> Close';
-                    btn.classList.add('active-btn');
-                }
-            }
+            }, 500); // Small delay to allow tab animation to start/display
         }
 
         // --- NAV ---
@@ -1267,18 +1388,23 @@
             document.querySelectorAll('.b-item').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
             
-            const idx = ['home', 'vendors', 'about', 'register'].indexOf(tab);
+            // Updated index mapping for 5 items: Home, Vendors, Services, About, Join
+            const idx = ['home', 'vendors', 'services', 'about', 'register'].indexOf(tab);
             if(idx > -1) {
                 document.querySelectorAll('.b-item')[idx].classList.add('active');
                 if(document.querySelectorAll('.nav-link')[idx]) document.querySelectorAll('.nav-link')[idx].classList.add('active');
             }
             window.scrollTo({top:0, behavior:'smooth'});
             
-            // Re-trigger animations if needed when switching tabs
+            // Trigger animations
             if(tab === 'home') {
                  applyAnimations('grid-health');
                  applyAnimations('grid-edu');
                  applyAnimations('grid-service');
+            }
+            if(tab === 'services') {
+                // Animate the service detail list
+                // Need a wrapper ID or class in the service tab to animate children
             }
         }
 
@@ -1290,7 +1416,8 @@
             { tag: "Essential Services", title: "Home Repair.", desc: "Electrician, Plumber, Carpenter & More." },
             { tag: "Essential Services", title: "Tech Solutions.", desc: "Computer Repair, CCTV & EV Mechanics." },
             { tag: "Smart Energy", title: "PM Surya Ghar.", desc: "Get Solar Subsidy & Free Electricity." },
-            { tag: "Explore Odisha", title: "Tour & Travels.", desc: "Visit Barunei & Atri Hot Springs." }
+            { tag: "Explore Odisha", title: "Tour & Travels.", desc: "Visit Barunei & Atri Hot Springs." },
+            { tag: "Health & Care", title: "Medicine Delivery.", desc: "Prescription medicines delivered to your doorstep." } // Added
         ];
 
         let sIdx = 0;
@@ -1308,7 +1435,7 @@
             slides[sIdx].classList.add('active');
             dots[sIdx].classList.add('active');
             const d = slideData[sIdx];
-            hText.innerHTML = `<span class="hero-tag">${d.tag}</span><h1>${d.title}</h1><p>${d.desc}</p>`;
+            if(d) hText.innerHTML = `<span class="hero-tag">${d.tag}</span><h1>${d.title}</h1><p>${d.desc}</p>`;
         }
         function changeSlide(n) { clearInterval(timer); show(sIdx + n); timer = setInterval(()=>changeSlide(1), 5000); }
         function goToSlide(n) { clearInterval(timer); show(n); timer = setInterval(()=>changeSlide(1), 5000); }
