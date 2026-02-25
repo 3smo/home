@@ -573,16 +573,6 @@
             </div>
             
             <div class="grid-3" id="grid-health">
-                <div class="card" style="border-left: 4px solid var(--med);">
-                    <div class="icon-box" style="color: var(--med);"><i class="fas fa-pills"></i></div>
-                    <h3>Medicines Delivery</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Prescription Medicines at Doorstep.</p>
-                    <div class="btn-group">
-                        <button class="btn-book" onclick="openForm('medicine')">Order Now <i class="fas fa-chevron-right"></i></button>
-                        <button class="btn-details" onclick="viewServiceDetail('svc-med')">View Details</button>
-                    </div>
-                </div>
-
                 <div class="card bg-yoga" style="border-left: 4px solid var(--yoga);">
                     <div class="icon-box" style="color: var(--yoga);"><i class="fas fa-spa"></i></div>
                     <h3>Yoga & Pranayam</h3>
@@ -592,8 +582,7 @@
                         <button class="btn-details" onclick="viewServiceDetail('svc-yoga')">View Details</button>
                     </div>
                 </div>
-
-                <div class="card" style="border-left: 4px solid var(--primary);">
+				<div class="card" style="border-left: 4px solid var(--primary);">
                     <div class="icon-box" style="color: var(--primary);"><i class="fas fa-bottle-droplet"></i></div>
                     <h3>Fresh Milk & Dairy</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Omfed, Pragati & Farm Milk.</p>
@@ -608,11 +597,10 @@
                     <h3>Farm Vegetables</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Direct from Haat. Washed & Sorted.</p>
                     <div class="btn-group">
-                        <a class="btn-book" href="https://docs.google.com/forms/d/e/1FAIpQLSdgcY7qdtwz7CRpuC-XGFBBtSVNOl-ZkCel2X_Gx80tJsB5Sw/viewform?usp=header">Buy Veggies <i class="fas fa-chevron-right"></i></a>
+                        <a class="btn-book" href="https://forms.gle/BQgrkkrrT8Fs3XqV7">Buy Veggies <i class="fas fa-chevron-right"></i></a>
                         <button class="btn-details" onclick="viewServiceDetail('svc-veg')">View Details</button>
                     </div>
                 </div>
-
                 <div class="card" style="border-left: 4px solid var(--accent);">
                     <div class="icon-box" style="color: var(--accent);"><i class="fas fa-utensils"></i></div>
                     <h3>Odia Breakfast</h3>
@@ -622,7 +610,6 @@
                         <button class="btn-details" onclick="viewServiceDetail('svc-bf')">View Details</button>
                     </div>
                 </div>
-
                 <div class="card" style="border-left: 4px solid #f97316;">
                     <div class="icon-box" style="color: #f97316;"><i class="fas fa-basket-shopping"></i></div>
                     <h3>Monthly Groceries</h3>
@@ -632,6 +619,16 @@
                         <button class="btn-details" onclick="viewServiceDetail('svc-grocery')">View Details</button>
                     </div>
                 </div>
+				<div class="card" style="border-left: 4px solid var(--med);">
+                    <div class="icon-box" style="color: var(--med);"><i class="fas fa-pills"></i></div>
+                    <h3>Medicines Delivery</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Prescription Medicines at Doorstep.</p>
+                    <div class="btn-group">
+                        <button class="btn-book" onclick="openForm('medicine')">Order Now <i class="fas fa-chevron-right"></i></button>
+                        <button class="btn-details" onclick="viewServiceDetail('svc-med')">View Details</button>
+                    </div>
+                </div>
+
             </div>
 
             <div class="legend-container">
@@ -688,7 +685,7 @@
                     <h3>KALINGA VIKASH</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Computer Education Institute.</p>
                     <div class="btn-group">
-                        <button class="btn-book" onclick="openForm('computer')">Enroll Now <i class="fas fa-chevron-right"></i></button>
+                        <a class="btn-action-primary" href="kalingavikash.com">Enroll Now</a>
                         <button class="btn-details" onclick="viewServiceDetail('svc-kv')">View Details</button>
                     </div>
                 </div>
@@ -1011,7 +1008,7 @@
                         <li>Certificate Recognized</li>
                     </ul>
                     <div class="service-card-footer">
-                        <button class="btn-action-primary" onclick="openForm('computer')">Enroll Now</button>
+                        <a class="btn-action-primary" href="kalingavikash.com">Enroll Now</a>
                         <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
                     </div>
                 </div>
@@ -1594,7 +1591,7 @@
         ];
 
         let sIdx = 0;
-        const slides = document.querySelectorAll('.slide');
+        const slidess = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
         const hText = document.getElementById('heroText');
         let timer;
