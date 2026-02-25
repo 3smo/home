@@ -20,7 +20,7 @@
             --yoga: #10b981;          
             --edu: #8b5cf6;           
             --tuition: #f43f5e;
-            --med: #ef4444; /* New Color for Medicine */
+            --med: #ef4444; 
             
             --bg-body: #020617;       
             --bg-card: #0f172a;       
@@ -72,7 +72,7 @@
             padding-bottom: 90px;
             overflow-x: hidden;
             transition: background-color 0.3s, color 0.3s;
-            top: 0 !important; /* Fix for Google Translate shifting body */
+            top: 0 !important; 
         }
 
         h1, h2, h3 { font-family: 'DM Serif Display', serif; letter-spacing: 0.5px; color: var(--text-head); }
@@ -196,7 +196,6 @@
         }
         .slide::after {
             content:''; position: absolute; top:0; left:0; width:100%; height:100%;
-            /* Hero overlay always dark for text readability */
             background: linear-gradient(0deg, #020617 0%, rgba(2,6,23,0.4) 60%, rgba(2,6,23,0.1) 100%);
         }
         .slide.active { opacity: 1; transform: scale(1); z-index: 2; }
@@ -233,7 +232,7 @@
         .dot { width: 8px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
         .dot.active { background: var(--primary); width: 25px; border-radius: 10px; }
 
-        /* --- 4. SECTIONS & GRID (WITH NEW ANIMATIONS) --- */
+        /* --- 4. SECTIONS & GRID --- */
         main { padding: 0 5%; max-width: 1200px; margin: 0 auto; }
         
         .stats-wrapper { margin-top: -40px; position: relative; z-index: 5; margin-bottom: 40px; }
@@ -251,7 +250,6 @@
         
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
 
-        /* CARD ANIMATION CLASSES */
         .card-anim-left { opacity: 0; transform: translateX(-80px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .card-anim-right { opacity: 0; transform: translateX(80px); transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .card-anim-active { opacity: 1; transform: translateX(0); }
@@ -278,13 +276,11 @@
             background: var(--legend-item-bg); padding: 15px; border-radius: 12px; display:flex; align-items:center; gap:10px;
         }
         
-        /* Specific Card Styles for Dark Mode Only */
         [data-theme="dark"] .bg-yoga { background: linear-gradient(145deg, #022c22, #0f172a); }
         [data-theme="dark"] .bg-edu { background: linear-gradient(145deg, #1e1b4b, #0f172a); }
         [data-theme="dark"] .bg-kv { background: linear-gradient(145deg, #4a044e, #0f172a); }
         [data-theme="dark"] .bg-solar { background: linear-gradient(145deg, #422006, #0f172a); }
         
-        /* Light mode needs subtle backgrounds instead of dark gradients */
         [data-theme="light"] .bg-yoga { background: #ecfdf5; border-color: var(--yoga); }
         [data-theme="light"] .bg-edu { background: #eff6ff; border-color: var(--edu); }
         [data-theme="light"] .bg-kv { background: #fdf4ff; border-color: #d946ef; }
@@ -302,37 +298,67 @@
         .reg-option:hover { border-color: var(--primary); background: rgba(59, 130, 246, 0.1); }
         .reg-icon { width: 45px; height: 45px; background: rgba(128,128,128,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-head); }
 
-        /* --- 6. REDESIGNED ABOUT US SECTION --- */
-        .about-hero {
-            text-align: center; padding: 40px 0; border-bottom: var(--border); margin-bottom: 40px;
-        }
-        .about-hero h2 { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; }
-        .about-hero p { max-width: 600px; margin: 0 auto; color: var(--text-muted); line-height: 1.6; }
-
-        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        /* --- 6. REDESIGNED ABOUT US (NEW STYLES) --- */
+        .about-redesign { padding-top: 40px; }
         
-        .vision-card {
-            background: var(--bg-card); padding: 30px; border-radius: 20px; border: var(--border);
-            text-align: center; position: relative; overflow: hidden;
+        .about-header {
+            text-align: center; margin-bottom: 50px; position: relative;
         }
-        .vision-icon {
-            width: 80px; height: 80px; margin: 0 auto 20px; background: rgba(59, 130, 246, 0.1);
+        .about-header h2 {
+            font-size: 3rem; color: var(--primary); margin-bottom: 15px;
+            animation: fadeInDown 1s ease;
+        }
+        .about-header p {
+            max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: var(--text-muted);
+            line-height: 1.6; animation: fadeInUp 1s ease 0.3s both;
+        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .story-container {
+            display: flex; flex-direction: column; gap: 50px; position: relative;
+        }
+        .story-block {
+            display: flex; align-items: center; gap: 30px;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(128,128,128,0.1);
+            padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);
+            transition: transform 0.4s ease, border-color 0.4s;
+        }
+        .story-block:hover { transform: translateY(-5px); border-color: var(--primary); }
+        
+        .story-icon-box {
+            min-width: 80px; height: 80px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; color: var(--primary);
+            font-size: 2rem; color: white; box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4);
         }
-        .vision-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
-        .vision-card p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+        .story-content h3 { font-size: 1.8rem; margin-bottom: 10px; color: var(--text-head); }
+        .story-content p { color: var(--text-muted); line-height: 1.6; font-size: 1rem; }
 
-        .founder-quote {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(0,0,0,0));
-            padding: 40px; border-radius: 20px; border-left: 5px solid var(--primary);
-            font-style: italic; color: var(--text-head); position: relative;
-            margin-bottom: 40px;
+        .founder-section {
+            margin-top: 60px; text-align: center; position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(0,0,0,0));
+            padding: 50px 20px; border-radius: 30px; border: 1px dashed var(--primary);
         }
-        .founder-quote i { position: absolute; top: 20px; left: 20px; font-size: 3rem; opacity: 0.1; }
-        .quote-author { display: block; margin-top: 15px; font-weight: 700; color: var(--primary); font-style: normal; }
-        
-        /* --- NEW: SERVICES TAB STYLES --- */
+        .founder-img {
+            width: 100px; height: 100px; background: #ccc; border-radius: 50%; margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center; background-size: cover;
+            border: 4px solid var(--bg-card); box-shadow: 0 0 0 2px var(--primary);
+        }
+        .quote-text { font-size: 1.2rem; font-style: italic; color: var(--text-head); margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .quote-icon { font-size: 2rem; color: var(--primary); opacity: 0.3; margin-bottom: 10px; }
+
+        .core-values-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 50px;
+        }
+        .val-card {
+            background: var(--bg-card); padding: 25px; border-radius: 16px; text-align: center; border: var(--border);
+            transition: 0.3s;
+        }
+        .val-card:hover { transform: scale(1.05); background: linear-gradient(145deg, var(--bg-card), rgba(59, 130, 246, 0.1)); border-color: var(--primary); }
+        .val-icon { font-size: 2rem; color: var(--accent); margin-bottom: 15px; }
+        .val-card h4 { font-size: 1.2rem; margin-bottom: 8px; }
+
+        /* --- 7. SERVICES DETAILS (UPDATED WITH BUTTONS) --- */
         .service-detail-card {
             background: var(--bg-card); border: var(--border); border-radius: var(--radius);
             padding: 30px; margin-bottom: 30px; transition: 0.3s;
@@ -342,8 +368,25 @@
         .service-detail-icon { font-size: 2rem; color: var(--primary); width: 60px; height: 60px; background: rgba(128,128,128,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
         .service-detail-list li { margin-bottom: 10px; color: var(--text-muted); list-style: none; display: flex; gap: 10px; }
         .service-detail-list li::before { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: var(--primary); }
+        
+        /* New Footer for Service Cards */
+        .service-card-footer {
+            margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(128,128,128,0.2);
+            display: flex; gap: 15px;
+        }
+        .btn-action-primary {
+            flex: 1; padding: 12px; border-radius: 50px; border: none; background: var(--primary);
+            color: white; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .btn-action-primary:hover { background: var(--primary-dark); box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4); }
+        
+        .btn-action-secondary {
+            flex: 1; padding: 12px; border-radius: 50px; border: 1px solid var(--text-muted); background: transparent;
+            color: var(--text-muted); font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .btn-action-secondary:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* --- 7. FOOTER --- */
+        /* --- 8. FOOTER --- */
         footer {
             background: var(--bg-card); border-top: var(--border);
             padding: 40px 5% 20px; margin-top: 50px;
@@ -360,7 +403,7 @@
         .f-socials a:hover { background: var(--primary); color: white; }
         .copyright { text-align: center; margin-top: 40px; pt: 20px; border-top: 1px solid rgba(128,128,128,0.1); color: var(--text-muted); font-size: 0.8rem; }
 
-        /* --- 8. POPUP MODAL --- */
+        /* --- 9. POPUP MODAL --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
@@ -400,11 +443,13 @@
             .slider-arrow { width: 35px; height: 35px; }
             .nav-actions { gap: 10px; }
             .top-bar { font-size: 0.7rem; }
-            .contact-info span { display: none; } /* Hide text "Call" on small mobile */
+            .contact-info span { display: none; } 
             .contact-info::after { content: '7735659232'; }
             
-            /* Mobile Anim adjustment */
-            .card-anim-left, .card-anim-right { transform: translateY(50px); } /* Fade up on mobile for better UX */
+            .card-anim-left, .card-anim-right { transform: translateY(50px); }
+            
+            /* Mobile Service Buttons */
+            .service-card-footer { flex-direction: column; }
         }
     </style>
 </head>
@@ -442,7 +487,8 @@
         <div class="desktop-menu">
             <span class="nav-link active" onclick="nav('home')">Home</span>
             <span class="nav-link" onclick="nav('vendors')">Partners</span>
-            <span class="nav-link" onclick="nav('services')">Our Services</span> <span class="nav-link" onclick="nav('about')">About</span>
+            <span class="nav-link" onclick="nav('services')">Our Services</span> 
+            <span class="nav-link" onclick="nav('about')">About</span>
             <span class="nav-link" onclick="nav('register')">Join Us</span>
         </div>
     </nav>
@@ -451,7 +497,8 @@
         <div class="b-links">
             <div class="b-item active" onclick="nav('home')"><i class="fas fa-home"></i> Home</div>
             <div class="b-item" onclick="nav('vendors')"><i class="fas fa-store"></i> Partners</div>
-            <div class="b-item" onclick="nav('services')"><i class="fas fa-list-check"></i> Services</div> <div class="b-item" onclick="nav('about')"><i class="fas fa-info-circle"></i> About</div>
+            <div class="b-item" onclick="nav('services')"><i class="fas fa-list-check"></i> Services</div> 
+            <div class="b-item" onclick="nav('about')"><i class="fas fa-info-circle"></i> About</div>
             <div class="b-item" onclick="nav('register')"><i class="fas fa-user-plus"></i> Join</div>
         </div>
     </nav>
@@ -471,7 +518,16 @@
     <div id="home" class="tab-content active">
         
         <div class="hero-wrapper">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1528498033381-8b067f53f9eb?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1626014903700-1c911a3b841d?q=80&w=1400&auto=format&fit=crop');"></div> <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1400&auto=format&fit=crop');"></div> <button class="slider-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1528498033381-8b067f53f9eb?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1626014903700-1c911a3b841d?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1400&auto=format&fit=crop');"></div> 
+
+            <button class="slider-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
             
             <div class="hero-overlay">
@@ -826,6 +882,10 @@
                         <li>Same Day Delivery</li>
                         <li>10-20% Discount on MRP</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('medicine')">Order Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-yoga" class="service-detail-card">
@@ -838,6 +898,10 @@
                         <li>Location: Gita Bhavan, Khordha</li>
                         <li>Trainer: Certified Patanjali Expert</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('yoga')">Join Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-milk" class="service-detail-card">
@@ -850,6 +914,10 @@
                         <li>Paneer: ₹380/kg</li>
                         <li>Morning Delivery: 6 AM - 8 AM</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('milk')">Order Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-veg" class="service-detail-card">
@@ -862,6 +930,10 @@
                         <li>Washed with Ozone water</li>
                         <li>Min Order: ₹100</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('veg')">Buy Veggies</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-bf" class="service-detail-card">
@@ -874,6 +946,10 @@
                         <li>Puri Upma: ₹40/plate</li>
                         <li>From Verified Local Vendors</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('food')">Order Food</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-grocery" class="service-detail-card">
@@ -886,6 +962,10 @@
                         <li>Bulk Order Discount</li>
                         <li>Scheduled Monthly Delivery</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('food')">Order Ration</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-skill" class="service-detail-card">
@@ -898,6 +978,10 @@
                         <li>CBSE Curriculum</li>
                         <li>Focus on Holistic Growth</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('school')">Admissions</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-pf" class="service-detail-card">
@@ -910,6 +994,10 @@
                         <li>JEE / NEET Preparation</li>
                         <li>Expert Faculty from Delhi</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('tuition')">Book Demo</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-kv" class="service-detail-card">
@@ -922,6 +1010,10 @@
                         <li>Practical Labs available</li>
                         <li>Certificate Recognized</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('computer')">Enroll Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-elec" class="service-detail-card">
@@ -934,6 +1026,10 @@
                         <li>Wiring/Inverter Setup</li>
                         <li>Certified Technicians</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('electrician')">Book Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-plum" class="service-detail-card">
@@ -946,6 +1042,10 @@
                         <li>Tank Cleaning / Motor Install</li>
                         <li>Quick Response</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('plumber')">Book Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-carp" class="service-detail-card">
@@ -958,6 +1058,10 @@
                         <li>Custom Furniture</li>
                         <li>Polishing Works</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('carpenter')">Book Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-ro" class="service-detail-card">
@@ -970,6 +1074,10 @@
                         <li>Filter Cartridge Change</li>
                         <li>Installation/Uninstallation</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('ro')">Book Service</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-interior" class="service-detail-card">
@@ -982,6 +1090,10 @@
                         <li>Modular Kitchen</li>
                         <li>Space Planning</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('interior')">Consult Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-tile" class="service-detail-card">
@@ -994,6 +1106,10 @@
                         <li>Bathroom Renovation</li>
                         <li>Experienced Masons</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('tile')">Book Mistri</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-civil" class="service-detail-card">
@@ -1006,6 +1122,10 @@
                         <li>Plastering / Repairs</li>
                         <li>Reliable Contractors</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('civil')">Contact Us</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-bike" class="service-detail-card">
@@ -1018,6 +1138,10 @@
                         <li>EV Battery/Motor Check</li>
                         <li>Puncture/Breakdown</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('bike')">Request Help</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-it" class="service-detail-card">
@@ -1030,6 +1154,10 @@
                         <li>CCTV Camera Installation</li>
                         <li>Networking Solutions</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('it')">Book Techie</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-jana" class="service-detail-card">
@@ -1042,6 +1170,10 @@
                         <li>PAN Card Application</li>
                         <li>Income/Caste Certificate</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('janaseva')">Book Service</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-staff" class="service-detail-card">
@@ -1054,6 +1186,10 @@
                         <li>Office Staff / Sales</li>
                         <li>Background Verified</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('consultant')">Hire Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-solar" class="service-detail-card">
@@ -1066,6 +1202,10 @@
                         <li>Subsidy Assistance up to ₹78,000</li>
                         <li>Vendor Connection</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('solar')">Apply Now</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
 
                 <div id="svc-travel" class="service-detail-card">
@@ -1078,6 +1218,10 @@
                         <li>Outstation Cabs (AC/Non-AC)</li>
                         <li>Authentic Local Guides</li>
                     </ul>
+                    <div class="service-card-footer">
+                        <button class="btn-action-primary" onclick="openForm('travel')">Book Ride</button>
+                        <button class="btn-action-secondary" onclick="nav('home')"><i class="fas fa-arrow-left"></i> Back to Home</button>
+                    </div>
                 </div>
             </div>
         </main>
@@ -1100,41 +1244,75 @@
     </div>
 
     <div id="about" class="tab-content">
-        <main style="padding-top: 40px;">
-            <div class="about-hero">
-                <h2>Bridging Trust, Building Khordha.</h2>
-                <p>3S Mart is not just an app; it's a digital handshake between you and Khordha's finest. We bring the heart of our community to your fingertips.</p>
+        <main class="about-redesign">
+            
+            <div class="about-header">
+                <h2>We Are 3S Mart.</h2>
+                <p>More than just an app, we are Khordha's digital heartbeat. Connecting the warmth of our community with the speed of technology.</p>
             </div>
 
-            <div class="founder-quote">
-                <i class="fas fa-quote-left"></i>
-                <p>"We are actually aiming and encouraging the authentic people of Khordha, who believe in consuming authentic products and also can provide authentic services to Khordha people. It's a continuous process to have a better society among us."</p>
-                <span class="quote-author">- Founder, 3S Mart Odisha</span>
+            <div class="story-container">
+                <div class="story-block card-anim-left">
+                    <div class="story-icon-box"><i class="fas fa-handshake"></i></div>
+                    <div class="story-content">
+                        <h3>The Digital Handshake</h3>
+                        <p>In a world of faceless transactions, we bring back the trust of a handshake. 3S Mart is built on the belief that technology should bring neighbors closer, not push them apart. We connect you directly with the best local talent Khordha has to offer.</p>
+                    </div>
+                </div>
+
+                <div class="story-block card-anim-right" style="flex-direction: row-reverse; text-align: right;">
+                    <div class="story-icon-box" style="background: linear-gradient(135deg, var(--accent), #d97706);"><i class="fas fa-shield-halved"></i></div>
+                    <div class="story-content">
+                        <h3>Uncompromising Trust</h3>
+                        <p>Safety isn't just a feature; it's our foundation. Every plumber, electrician, and milk vendor on our platform undergoes a strict background verification process. When you book through 3S Mart, you aren't just getting a service; you're getting peace of mind.</p>
+                    </div>
+                </div>
+
+                 <div class="story-block card-anim-left">
+                    <div class="story-icon-box" style="background: linear-gradient(135deg, var(--yoga), #059669);"><i class="fas fa-seedling"></i></div>
+                    <div class="story-content">
+                        <h3>Rooted in Khordha</h3>
+                        <p>We are proudly "Vocal for Local". By choosing us, you are directly supporting local businesses, farmers, and skilled workers in your area. Your money stays within the community, helping Khordha grow and thrive.</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="about-grid">
-                <div class="vision-card card-anim-left">
-                    <div class="vision-icon"><i class="fas fa-hand-holding-heart"></i></div>
-                    <h3>Vocal for Local</h3>
-                    <p>We strictly partner with local Khordha vendors and service providers. Your money stays in the community, helping local businesses grow.</p>
+            <div class="founder-section card-anim-active">
+                <div class="founder-img" style="background-image: url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=400&auto=format&fit=crop');"></div> 
+                <i class="fas fa-quote-left quote-icon"></i>
+                <p class="quote-text">"We are actually aiming and encouraging the authentic people of Khordha, who believe in consuming authentic products and also can provide authentic services to Khordha people. It's a continuous process to have a better society among us."</p>
+                <div style="font-weight: 700; color: var(--primary); letter-spacing: 1px;">FOUNDER, 3S MART ODISHA</div>
+            </div>
+
+            <div class="core-values-grid">
+                <div class="val-card">
+                    <div class="val-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Fast Service</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Quick response times for all your daily needs.</p>
                 </div>
-                <div class="vision-card card-anim-right">
-                    <div class="vision-icon"><i class="fas fa-check-double"></i></div>
-                    <h3>100% Verified</h3>
-                    <p>Safety first. Every plumber, electrician, and milk vendor on our platform undergoes a background verification for your peace of mind.</p>
+                <div class="val-card">
+                    <div class="val-icon"><i class="fas fa-check-circle"></i></div>
+                    <h4>100% Verified</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Background checked professionals only.</p>
                 </div>
-                <div class="vision-card card-anim-left">
-                    <div class="vision-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>Tech Enabled</h3>
-                    <p>Combining tradition with technology. Book a Pandit ji or an Electrician with the same ease as ordering a pizza. Fast, reliable, and digital.</p>
+                <div class="val-card">
+                    <div class="val-icon"><i class="fas fa-heart"></i></div>
+                    <h4>Community First</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Built by Khordha, for Khordha.</p>
+                </div>
+                <div class="val-card">
+                    <div class="val-icon"><i class="fas fa-headset"></i></div>
+                    <h4>Support</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Dedicated local support team.</p>
                 </div>
             </div>
 
-            <div class="card" style="text-align:center; padding: 40px;">
-                <h3 style="margin-bottom: 10px;">Be Part of the Story</h3>
-                <p style="color:var(--text-muted); margin-bottom: 20px;">Whether you are a customer looking for purity or a vendor looking for growth.</p>
-                <button class="btn-book" style="width: auto; margin: 0 auto;" onclick="nav('register')">Join Our Family</button>
+            <div style="text-align: center; margin-top: 60px;">
+                <button class="btn-book" style="width: auto; padding: 15px 40px; font-size: 1rem; font-weight: 600;" onclick="nav('register')">
+                    Become a Partner <i class="fas fa-arrow-right" style="margin-left: 10px;"></i>
+                </button>
             </div>
+
         </main>
     </div>
 
@@ -1196,10 +1374,7 @@
 
     <script type="text/javascript">
         // --- GOOGLE TRANSLATE CONFIG ---
-        // Restricted to English, Hindi, Odia.
-        // Attempting to set cookie to force Odia default if not present.
         function googleTranslateElementInit() {
-            // Set Cookie to Odia if it doesn't exist
             if (document.cookie.indexOf('googtrans=/en/or') === -1 && document.cookie.indexOf('googtrans') === -1) {
                 document.cookie = "googtrans=/en/or";
                 document.cookie = "googtrans=/en/or; domain=." + document.domain;
@@ -1207,7 +1382,7 @@
 
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
-                includedLanguages: 'en,hi,or', // Only English, Hindi, Odia
+                includedLanguages: 'en,hi,or', 
                 layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
                 autoDisplay: false
             }, 'google_translate_element');
@@ -1233,7 +1408,7 @@
             oscillator.stop(audioCtx.currentTime + 0.1);
         }
 
-        document.querySelectorAll('.card, .vision-card, .btn-book').forEach(el => {
+        document.querySelectorAll('.card, .story-block, .btn-book, .btn-action-primary').forEach(el => {
             el.addEventListener('mouseenter', () => {
                 playHoverSound();
             });
@@ -1257,24 +1432,31 @@
         function applyAnimations(gridId) {
             const grid = document.getElementById(gridId);
             if(!grid) return;
-            const cards = grid.querySelectorAll('.card, .vision-card, .legend-item, .service-detail-card');
+            const cards = grid.querySelectorAll('.card, .story-block, .legend-item, .service-detail-card');
             cards.forEach((card, index) => {
-                card.classList.remove('card-anim-left', 'card-anim-right', 'card-anim-active'); // Reset for re-animation on tab switch
-                if (index % 2 === 0) {
-                    card.classList.add('card-anim-left');
-                } else {
-                    card.classList.add('card-anim-right');
+                // Determine animation direction based on index or class
+                // But only if it doesn't already have a direction class
+                if (!card.classList.contains('card-anim-left') && !card.classList.contains('card-anim-right')) {
+                    if (index % 2 === 0) {
+                        card.classList.add('card-anim-left');
+                    } else {
+                        card.classList.add('card-anim-right');
+                    }
                 }
                 observer.observe(card);
             });
         }
         
+        // Initial Trigger
         setTimeout(() => {
             applyAnimations('grid-health');
             applyAnimations('grid-edu');
             applyAnimations('grid-service');
             applyAnimations('grid-legend');
-            document.querySelectorAll('.vision-card').forEach((c) => observer.observe(c));
+            
+            // Observe elements in About Us manually since they are not in a standard grid
+            document.querySelectorAll('.story-block').forEach(el => observer.observe(el));
+            document.querySelectorAll('.founder-section').forEach(el => observer.observe(el));
         }, 100);
 
 
@@ -1319,7 +1501,7 @@
 
         // --- LINKS & MODAL LOGIC ---
         const links = {
-            'medicine': '#', // Medicine Link
+            'medicine': '#',
             'milk': '#', 'veg': '#', 'food': '#', 'solar': '#', 'consultant': '#',
             'travel': '#', 'electrician': '#', 'plumber': '#', 'janaseva': '#',
             'yoga': '#', 'school': '#', 'computer': '#', 'tuition': '#',
@@ -1361,23 +1543,17 @@
 
         // --- VIEW DETAILS REDIRECTION ---
         function viewServiceDetail(serviceId) {
-            // 1. Switch to Services tab
             nav('services');
-            
-            // 2. Find the element
             setTimeout(() => {
                 const element = document.getElementById(serviceId);
                 if(element) {
-                    // 3. Scroll to it
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    
-                    // 4. Highlight it momentarily
                     element.classList.add('highlight');
                     setTimeout(() => {
                         element.classList.remove('highlight');
                     }, 2000);
                 }
-            }, 500); // Small delay to allow tab animation to start/display
+            }, 500);
         }
 
         // --- NAV ---
@@ -1388,7 +1564,6 @@
             document.querySelectorAll('.b-item').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
             
-            // Updated index mapping for 5 items: Home, Vendors, Services, About, Join
             const idx = ['home', 'vendors', 'services', 'about', 'register'].indexOf(tab);
             if(idx > -1) {
                 document.querySelectorAll('.b-item')[idx].classList.add('active');
@@ -1396,15 +1571,13 @@
             }
             window.scrollTo({top:0, behavior:'smooth'});
             
-            // Trigger animations
             if(tab === 'home') {
                  applyAnimations('grid-health');
                  applyAnimations('grid-edu');
                  applyAnimations('grid-service');
             }
-            if(tab === 'services') {
-                // Animate the service detail list
-                // Need a wrapper ID or class in the service tab to animate children
+            if(tab === 'about') {
+                // Re-trigger about animations if needed, though they run once usually
             }
         }
 
@@ -1417,7 +1590,7 @@
             { tag: "Essential Services", title: "Tech Solutions.", desc: "Computer Repair, CCTV & EV Mechanics." },
             { tag: "Smart Energy", title: "PM Surya Ghar.", desc: "Get Solar Subsidy & Free Electricity." },
             { tag: "Explore Odisha", title: "Tour & Travels.", desc: "Visit Barunei & Atri Hot Springs." },
-            { tag: "Health & Care", title: "Medicine Delivery.", desc: "Prescription medicines delivered to your doorstep." } // Added
+            { tag: "Health & Care", title: "Medicine Delivery.", desc: "Prescription medicines delivered to your doorstep." }
         ];
 
         let sIdx = 0;
