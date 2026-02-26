@@ -585,10 +585,10 @@
 				
                 <div class="card" style="border-left: 4px solid #4ade80;">
                     <div class="icon-box" style="color: #4ade80;"><i class="fas fa-carrot"></i></div>
-                    <h3>Farm Vegetables</h3>
+                    <h3>Fresh Vegetables & Fruits</h3>
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 10px;">Direct from Haat. Washed & Sorted.</p>
                     <div class="btn-group">
-                        <a class="btn-book" href="https://forms.gle/BQgrkkrrT8Fs3XqV7">Buy Veggies <i class="fas fa-chevron-right"></i></a>
+                        <button class="btn-book" onclick="openForm('veg')">Join Session <i class="fas fa-chevron-right"></i></button>
                         <button class="btn-details" onclick="viewServiceDetail('svc-veg')">View Details</button>
                     </div>
                 </div>
@@ -920,7 +920,7 @@
                 <div id="svc-veg" class="service-detail-card">
                     <div class="service-detail-header">
                         <div class="service-detail-icon"><i class="fas fa-carrot"></i></div>
-                        <h3>Farm Vegetables</h3>
+                        <h3>Fresh Vegetables & Ftuits</h3>
                     </div>
                     <ul class="service-detail-list">
                         <li>Seasonal Veggies available</li>
@@ -1320,11 +1320,11 @@
                 <p style="color: var(--text-muted);">Click to apply via Google Form.</p>
             </div>
 
-			<div class="reg-option" onclick="openForm('https://forms.gle/21nSLoJjKmEmJhRr8')">
+			<div class="reg-option" onclick="openForm('register_customer')">
                 <div class="reg-icon"><i class="fas fa-shop"></i></div>
                 <div><h4>Customer Registration</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Sell Products</span></div>
             </div>
-            <div class="reg-option" onclick="openForm('https://forms.gle/21nSLoJjKmEmJhRr8')">
+            <div class="reg-option" onclick="openForm('register_vendor')">
                 <div class="reg-icon"><i class="fas fa-shop"></i></div>
                 <div><h4>Vendor Registration</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Sell Products</span></div>
             </div></a>
@@ -1503,12 +1503,16 @@
         // --- LINKS & MODAL LOGIC ---
         const links = {
             'medicine': '#',
-            'milk': '#', 'veg': '#', 'food': '#', 'solar': '#', 'consultant': '#',
+            'milk': '#', 'veg': 'https://forms.gle/BcrynHh5s2cy5Jg1A', 'food': '#', 'solar': '#', 'consultant': '#',
             'travel': '#', 'electrician': '#', 'plumber': '#', 'janaseva': '#',
             'yoga': '#', 'school': '#', 'computer': '#', 'tuition': '#',
             'carpenter': '#', 'ro': '#', 'interior': '#', 'tile': '#', 
             'civil': '#', 'bike': '#', 'it': '#',
-            'register_vendor': '#', 'register_service': '#', 'register_job': '#', 'register_edu': '#'
+            'register_customer': 'https://forms.gle/2WDQHpGv5NkKDAtG8',
+			'register_vendor': 'https://forms.gle/2WDQHpGv5NkKDAtG8',
+			'register_service': '#', 
+			'register_job': '#', 
+			'register_edu': '#'
         };
 
         const modal = document.getElementById('customModal');
@@ -1618,6 +1622,7 @@
     </script>
 </body>
 </html>
+
 
 
 
