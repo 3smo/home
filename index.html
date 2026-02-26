@@ -73,6 +73,11 @@
             overflow-x: hidden;
             transition: background-color 0.3s, color 0.3s;
             top: 0 !important; 
+            
+            /* SMOOTH FONT RENDERING */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         h1, h2, h3 { font-family: 'DM Serif Display', serif; letter-spacing: 0.5px; color: var(--text-head); }
@@ -114,10 +119,10 @@
 
         .btn-book {
             width: 100%; padding: 12px 20px; border-radius: 50px; border: 1px solid rgba(128,128,128,0.2); 
-            background: rgba(128,128,128,0.1); color: var(--text-head); font-size: 0.9rem;
+            background: rgba(128,128,128,0.1); color: var(--text-head); font-size: 0.9rem; font-weight: 600;
             cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: 0.3s;
         }
-        .btn-book:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .btn-book:hover { background: var(--primary); border-color: var(--primary); color: #fff; transform: translateY(-2px); }
         .btn-book:active { transform: scale(0.98); }
 
         .btn-details {
@@ -171,7 +176,7 @@
         .goog-te-gadget-icon { display: none !important; }
         
         .desktop-menu { display: flex; gap: 20px; }
-        .nav-link { color: var(--text-muted); cursor: pointer; font-weight: 500; transition: 0.3s; }
+        .nav-link { color: var(--text-muted); cursor: pointer; font-weight: 600; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { color: var(--primary); }
 
         .bottom-nav {
@@ -184,19 +189,24 @@
         .b-item.active { color: var(--primary); }
         .b-item i { font-size: 1.3rem; }
 
-        /* --- 3. HERO SLIDER --- */
+        /* --- 3. HERO SLIDER (REDESIGNED) --- */
         .hero-wrapper {
-            margin-top: 105px; /* Adjusted for Top Bar + Nav */
+            margin-top: 105px;
             position: relative; height: 500px; overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            /* Smooth mask at bottom */
+            border-radius: 0 0 20px 20px;
         }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center; opacity: 0; transition: opacity 0.8s, transform 6s; transform: scale(1.1); z-index: 1;
+            background-size: cover; background-position: center; 
+            opacity: 0; 
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), transform 8s linear; 
+            transform: scale(1.1); z-index: 1;
         }
         .slide::after {
             content:''; position: absolute; top:0; left:0; width:100%; height:100%;
-            background: linear-gradient(0deg, #020617 0%, rgba(2,6,23,0.4) 60%, rgba(2,6,23,0.1) 100%);
+            background: linear-gradient(180deg, rgba(2,6,23,0.1) 0%, rgba(2,6,23,0.6) 50%, rgba(2,6,23,0.95) 100%);
         }
         .slide.active { opacity: 1; transform: scale(1); z-index: 2; }
         
@@ -206,20 +216,24 @@
             pointer-events: none;
         }
         .hero-text { color: white; max-width: 650px; margin-bottom: 10px; pointer-events: auto; }
+        
+        /* Text Animation */
+        .hero-text.animate-text { animation: fadeInUp 0.8s ease-out forwards; }
+
         .hero-tag {
             background: var(--primary); color: #fff; padding: 5px 15px; border-radius: 50px;
             font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px;
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
         }
         .hero-text h1 { font-size: 2.8rem; line-height: 1.1; margin-bottom: 10px; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
-        .hero-text p { font-size: 1.1rem; color: #cbd5e1; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
+        .hero-text p { font-size: 1.1rem; color: #e2e8f0; text-shadow: 0 2px 10px rgba(0,0,0,0.8); font-weight: 400; }
 
         .slider-arrow {
             position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
-            background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); color: white; 
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; 
             width: 45px; height: 45px; border-radius: 50%; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-            transition: 0.3s; pointer-events: auto;
+            display: flex; align-items: center; justify-content: center; font-size: 1rem;
+            transition: 0.3s; pointer-events: auto; backdrop-filter: blur(5px);
         }
         .slider-arrow:hover { background: var(--primary); border-color: var(--primary); }
         .prev { left: 20px; }
@@ -260,7 +274,7 @@
             position: relative; overflow: hidden;
             display: flex; flex-direction: column; justify-content: space-between;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 0 20px rgba(59, 130, 246, 0.25); }
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15); }
 
         .icon-box {
             width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
@@ -518,14 +532,14 @@
     <div id="home" class="tab-content active">
         
         <div class="hero-wrapper">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1528498033381-8b067f53f9eb?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1626014903700-1c911a3b841d?q=80&w=1400&auto=format&fit=crop');"></div> 
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1400&auto=format&fit=crop');"></div> 
+            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1531297461136-82bf960b1b71?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523592121529-f6dde35f079e?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=1600&auto=format&fit=crop');"></div> 
 
             <button class="slider-arrow prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-arrow next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
@@ -1376,11 +1390,6 @@
     <script type="text/javascript">
         // --- GOOGLE TRANSLATE CONFIG ---
         function googleTranslateElementInit() {
-            /*if (document.cookie.indexOf('googtrans=/en/or') === -1 && document.cookie.indexOf('googtrans') === -1) {
-                document.cookie = "googtrans=/en/en";
-                document.cookie = "googtrans=/en/en; domain=." + document.domain;
-            }*/
-
             new google.translate.TranslateElement({
                 pageLanguage: 'en',
                 includedLanguages: 'en,hi,or', 
@@ -1435,8 +1444,6 @@
             if(!grid) return;
             const cards = grid.querySelectorAll('.card, .story-block, .legend-item, .service-detail-card');
             cards.forEach((card, index) => {
-                // Determine animation direction based on index or class
-                // But only if it doesn't already have a direction class
                 if (!card.classList.contains('card-anim-left') && !card.classList.contains('card-anim-right')) {
                     if (index % 2 === 0) {
                         card.classList.add('card-anim-left');
@@ -1454,8 +1461,6 @@
             applyAnimations('grid-edu');
             applyAnimations('grid-service');
             applyAnimations('grid-legend');
-            
-            // Observe elements in About Us manually since they are not in a standard grid
             document.querySelectorAll('.story-block').forEach(el => observer.observe(el));
             document.querySelectorAll('.founder-section').forEach(el => observer.observe(el));
         }, 100);
@@ -1581,55 +1586,66 @@
                  applyAnimations('grid-edu');
                  applyAnimations('grid-service');
             }
-            if(tab === 'about') {
-                // Re-trigger about animations if needed, though they run once usually
-            }
         }
 
-        // --- SLIDER ---
+        // --- FIXED SLIDER LOGIC ---
         const slideData = [
             { tag: "Health & Nutrition", title: "Morning Purity.", desc: "Fresh Omfed & Farm Milk delivered by 7 AM." },
-            { tag: "Health & Nutrition", title: "Green Vegetables.", desc: "Direct from Khordha Haat. Washed & Sorted." },
+            { tag: "Fresh Market", title: "Green Vegetables.", desc: "Direct from Khordha Haat. Washed & Sorted." },
             { tag: "Education Hub", title: "Skills & Knowledge.", desc: "School, Computer & Coaching Centers." },
             { tag: "Essential Services", title: "Home Repair.", desc: "Electrician, Plumber, Carpenter & More." },
-            { tag: "Essential Services", title: "Tech Solutions.", desc: "Computer Repair, CCTV & EV Mechanics." },
+            { tag: "Tech Support", title: "Tech Solutions.", desc: "Computer Repair, CCTV & EV Mechanics." },
             { tag: "Smart Energy", title: "PM Surya Ghar.", desc: "Get Solar Subsidy & Free Electricity." },
             { tag: "Explore Odisha", title: "Tour & Travels.", desc: "Visit Barunei & Atri Hot Springs." },
             { tag: "Health & Care", title: "Medicine Delivery.", desc: "Prescription medicines delivered to your doorstep." }
         ];
 
         let sIdx = 0;
-        const slidess = document.querySelectorAll('.slide');
+        // Corrected variable name from 'slidess' to 'slides'
+        const slides = document.querySelectorAll('.slide'); 
         const dots = document.querySelectorAll('.dot');
         const hText = document.getElementById('heroText');
         let timer;
 
         function show(n) {
+            // Logic to loop index
             if(n >= slides.length) sIdx = 0;
             else if(n < 0) sIdx = slides.length - 1;
             else sIdx = n;
+            
+            // Reset active classes
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
+            
+            // Set new active classes
             slides[sIdx].classList.add('active');
             dots[sIdx].classList.add('active');
+            
+            // Update Text with Animation
             const d = slideData[sIdx];
-            if(d) hText.innerHTML = `<span class="hero-tag">${d.tag}</span><h1>${d.title}</h1><p>${d.desc}</p>`;
+            if(d) {
+                hText.classList.remove('animate-text'); // Remove class to reset animation
+                void hText.offsetWidth; // Trigger reflow (magic hack to restart CSS animation)
+                hText.innerHTML = `<span class="hero-tag">${d.tag}</span><h1>${d.title}</h1><p>${d.desc}</p>`;
+                hText.classList.add('animate-text');
+            }
         }
-        function changeSlide(n) { clearInterval(timer); show(sIdx + n); timer = setInterval(()=>changeSlide(1), 5000); }
-        function goToSlide(n) { clearInterval(timer); show(n); timer = setInterval(()=>changeSlide(1), 5000); }
+
+        function changeSlide(n) { 
+            clearInterval(timer); 
+            show(sIdx + n); 
+            timer = setInterval(()=>changeSlide(1), 5000); 
+        }
+
+        function goToSlide(n) { 
+            clearInterval(timer); 
+            show(n); 
+            timer = setInterval(()=>changeSlide(1), 5000); 
+        }
+
+        // Initialize Slider
         timer = setInterval(()=>changeSlide(1), 5000);
         show(0);
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
