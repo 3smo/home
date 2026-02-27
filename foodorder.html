@@ -485,10 +485,10 @@
             &copy; 2024 3S Mart Odisha. All Rights Reserved.
         </div>
     </footer>
-<script>
+ript>
         // --- SOUND EFFECT ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-2        function playHoverSound() {
+        function playHoverSound() {
             if (audioCtx.state === 'suspended') { audioCtx.resume(); }
             const oscillator = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
@@ -604,6 +604,8 @@
 			'register_job': '#', 
 			'register_edu': '#'
         };
+
+        const modal = document.getElementById('customModal');
         
         function openForm(type) {
             const url = links[type];
@@ -612,6 +614,41 @@
             } else {
                 window.location.href =url;
             }
+        }
+
+        function showModal() {
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('active');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // --- VIEW DETAILS REDIRECTION ---
+        function viewServiceDetail(serviceId) {
+            nav('services');
+            setTimeout(() => {
+                const element = document.getElementById(serviceId);
+                if(element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    element.classList.add('highlight');
+                    setTimeout(() => {
+                        element.classList.remove('highlight');
+                    }, 2000);
+                }
+            }, 500);
         }
 
         // --- NAV ---
@@ -635,6 +672,65 @@
                  applyAnimations('grid-service');
             }
         }
+
+        // --- FIXED SLIDER LOGIC ---
+        const slideData = [
+            { tag: "Health & Nutrition", title: "Morning Purity.", desc: "Fresh Omfed & Farm Milk delivered by 7 AM." },
+            { tag: "Fresh Market", title: "Green Vegetables.", desc: "Direct from Khordha Haat. Washed & Sorted." },
+            { tag: "Education Hub", title: "Skills & Knowledge.", desc: "School, Computer & Coaching Centers." },
+            { tag: "Essential Services", title: "Home Repair.", desc: "Electrician, Plumber, Carpenter & More." },
+            { tag: "Tech Support", title: "Tech Solutions.", desc: "Computer Repair, CCTV & EV Mechanics." },
+            { tag: "Smart Energy", title: "PM Surya Ghar.", desc: "Get Solar Subsidy & Free Electricity." },
+            { tag: "Explore Odisha", title: "Tour & Travels.", desc: "Visit Barunei & Atri Hot Springs." },
+            { tag: "Health & Care", title: "Medicine Delivery.", desc: "Prescription medicines delivered to your doorstep." }
+        ];
+
+        let sIdx = 0;
+        // Corrected variable name from 'slidess' to 'slides'
+        const slides = document.querySelectorAll('.slide'); 
+        const dots = document.querySelectorAll('.dot');
+        const hText = document.getElementById('heroText');
+        let timer;
+
+        function show(n) {
+            // Logic to loop index
+            if(n >= slides.length) sIdx = 0;
+            else if(n < 0) sIdx = slides.length - 1;
+            else sIdx = n;
+            
+            // Reset active classes
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            // Set new active classes
+            slides[sIdx].classList.add('active');
+            dots[sIdx].classList.add('active');
+            
+            // Update Text with Animation
+            const d = slideData[sIdx];
+            if(d) {
+                hText.classList.remove('animate-text'); // Remove class to reset animation
+                void hText.offsetWidth; // Trigger reflow (magic hack to restart CSS animation)
+                hText.innerHTML = `<span class="hero-tag">${d.tag}</span><h1>${d.title}</h1><p>${d.desc}</p>`;
+                hText.classList.add('animate-text');
+            }
+        }
+
+        function changeSlide(n) { 
+            clearInterval(timer); 
+            show(sIdx + n); 
+            timer = setInterval(()=>changeSlide(1), 5000); 
+        }
+
+        function goToSlide(n) { 
+            clearInterval(timer); 
+            show(n); 
+            timer = setInterval(()=>changeSlide(1), 5000); 
+        }
+
+        // Initialize Slider
+        timer = setInterval(()=>changeSlide(1), 5000);
+        show(0);
     </script>
 </body>
 </html>
