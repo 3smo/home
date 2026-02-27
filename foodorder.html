@@ -177,6 +177,32 @@
         .b-item.active { color: var(--primary); }
         .b-item i { font-size: 1.3rem; }
 
+        /* --- 3. HERO SLIDER (REDESIGNED) --- */
+        .hero-wrapper {
+            margin-top: 105px;
+            position: relative; height: 500px; overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            /* Smooth mask at bottom */
+            border-radius: 0 0 20px 20px;
+        }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 3;
+            display: flex; flex-direction: column; justify-content: flex-end; padding: 30px 5% 70px 5%;
+            pointer-events: none;
+        }
+        .hero-text { color: white; max-width: 650px; margin-bottom: 10px; pointer-events: auto; }
+        
+        /* Text Animation */
+        .hero-text.animate-text { animation: fadeInUp 0.8s ease-out forwards; }
+
+        .hero-tag {
+            background: var(--primary); color: #fff; padding: 5px 15px; border-radius: 50px;
+            font-size: 0.8rem; font-weight: 700; text-transform: uppercase; display: inline-block; margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        .hero-text h1 { font-size: 2.8rem; line-height: 1.1; margin-bottom: 10px; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+        .hero-text p { font-size: 1.1rem; color: #e2e8f0; text-shadow: 0 2px 10px rgba(0,0,0,0.8); font-weight: 400; }
+
         /* --- 4. SECTIONS & GRID --- */
         main { padding: 0 5%; max-width: 1200px; margin: 0 auto; }
         
@@ -445,6 +471,8 @@
             <div class="b-item" onclick="nav('register')"><i class="fas fa-user-plus"></i> Join</div>
         </div>
     </nav>
+
+
     <div id="home" class="tab-content active">
         <div >
 		<iframe 
@@ -485,7 +513,7 @@
             &copy; 2024 3S Mart Odisha. All Rights Reserved.
         </div>
     </footer>
-ript>
+<script>
         // --- SOUND EFFECT ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playHoverSound() {
@@ -653,84 +681,10 @@ ript>
 
         // --- NAV ---
         function nav(tab) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            document.getElementById(tab).classList.add('active');
-            
-            document.querySelectorAll('.b-item').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
-            
-            const idx = ['home', 'vendors', 'services', 'about', 'register'].indexOf(tab);
-            if(idx > -1) {
-                document.querySelectorAll('.b-item')[idx].classList.add('active');
-                if(document.querySelectorAll('.nav-link')[idx]) document.querySelectorAll('.nav-link')[idx].classList.add('active');
-            }
-            window.scrollTo({top:0, behavior:'smooth'});
-            
-            if(tab === 'home') {
-                 applyAnimations('grid-health');
-                 applyAnimations('grid-edu');
-                 applyAnimations('grid-service');
-            }
+             window.location.href = "./index.html";			
+
         }
 
-        // --- FIXED SLIDER LOGIC ---
-        const slideData = [
-            { tag: "Health & Nutrition", title: "Morning Purity.", desc: "Fresh Omfed & Farm Milk delivered by 7 AM." },
-            { tag: "Fresh Market", title: "Green Vegetables.", desc: "Direct from Khordha Haat. Washed & Sorted." },
-            { tag: "Education Hub", title: "Skills & Knowledge.", desc: "School, Computer & Coaching Centers." },
-            { tag: "Essential Services", title: "Home Repair.", desc: "Electrician, Plumber, Carpenter & More." },
-            { tag: "Tech Support", title: "Tech Solutions.", desc: "Computer Repair, CCTV & EV Mechanics." },
-            { tag: "Smart Energy", title: "PM Surya Ghar.", desc: "Get Solar Subsidy & Free Electricity." },
-            { tag: "Explore Odisha", title: "Tour & Travels.", desc: "Visit Barunei & Atri Hot Springs." },
-            { tag: "Health & Care", title: "Medicine Delivery.", desc: "Prescription medicines delivered to your doorstep." }
-        ];
-
-        let sIdx = 0;
-        // Corrected variable name from 'slidess' to 'slides'
-        const slides = document.querySelectorAll('.slide'); 
-        const dots = document.querySelectorAll('.dot');
-        const hText = document.getElementById('heroText');
-        let timer;
-
-        function show(n) {
-            // Logic to loop index
-            if(n >= slides.length) sIdx = 0;
-            else if(n < 0) sIdx = slides.length - 1;
-            else sIdx = n;
-            
-            // Reset active classes
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            
-            // Set new active classes
-            slides[sIdx].classList.add('active');
-            dots[sIdx].classList.add('active');
-            
-            // Update Text with Animation
-            const d = slideData[sIdx];
-            if(d) {
-                hText.classList.remove('animate-text'); // Remove class to reset animation
-                void hText.offsetWidth; // Trigger reflow (magic hack to restart CSS animation)
-                hText.innerHTML = `<span class="hero-tag">${d.tag}</span><h1>${d.title}</h1><p>${d.desc}</p>`;
-                hText.classList.add('animate-text');
-            }
-        }
-
-        function changeSlide(n) { 
-            clearInterval(timer); 
-            show(sIdx + n); 
-            timer = setInterval(()=>changeSlide(1), 5000); 
-        }
-
-        function goToSlide(n) { 
-            clearInterval(timer); 
-            show(n); 
-            timer = setInterval(()=>changeSlide(1), 5000); 
-        }
-
-        // Initialize Slider
-        timer = setInterval(()=>changeSlide(1), 5000);
-        show(0);
     </script>
 </body>
 </html>
