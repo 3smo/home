@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>3S Mart Odisha | Khordha</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -66,7 +66,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            /* CHANGED: Using Poppins for body text */
+            font-family: 'Poppins', sans-serif;
             background-color: var(--bg-body);
             color: var(--text-main);
             padding-bottom: 90px;
@@ -80,7 +81,12 @@
             text-rendering: optimizeLegibility;
         }
 
-        h1, h2, h3 { font-family: 'DM Serif Display', serif; letter-spacing: 0.5px; color: var(--text-head); }
+        /* CHANGED: Using Poppins for headings as well for a consistent smooth look */
+        h1, h2, h3 { 
+            font-family: 'Poppins', sans-serif; 
+            letter-spacing: 0.5px; 
+            color: var(--text-head); 
+        }
 
         /* --- NEW: TOP BAR --- */
         .top-bar {
@@ -155,25 +161,7 @@
         }
         .theme-btn:hover { color: var(--primary); border-color: var(--primary); }
 
-        /* Google Translate Styling */
-        #google_translate_element {
-            overflow: hidden;
-            border: 1px solid var(--text-muted);
-            border-radius: 20px;
-            padding: 0 5px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-        }
-        .goog-te-gadget-simple {
-            background-color: transparent !important; 
-            border: none !important;
-            padding: 0 !important; 
-            font-family: 'Outfit', sans-serif !important;
-        }
-        .goog-te-gadget-simple .goog-te-menu-value { color: var(--text-muted) !important; font-size: 0.8rem; }
-        .goog-te-gadget-simple .goog-te-menu-value span { color: var(--text-muted) !important; border: none !important; }
-        .goog-te-gadget-icon { display: none !important; }
+        /* CHANGED: Removed Google Translate specific CSS */
         
         .desktop-menu { display: flex; gap: 20px; }
         .nav-link { color: var(--text-muted); cursor: pointer; font-weight: 600; transition: 0.3s; }
@@ -255,7 +243,7 @@
             background: var(--bg-card); border: var(--border); padding: 20px; border-radius: var(--radius);
             text-align: center; box-shadow: var(--shadow-card); backdrop-filter: blur(10px);
         }
-        .stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); font-family: 'DM Serif Display', serif; }
+        .stat-num { font-size: 2rem; font-weight: 800; color: var(--primary); font-family: 'Poppins', sans-serif; }
         .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         .section-head { margin: 3rem 0 1.5rem; border-bottom: 1px solid var(--border); padding-bottom: 15px; display: flex; justify-content: space-between; align-items: end; }
@@ -491,8 +479,6 @@
         </div>
         
         <div class="nav-actions">
-            <div id="google_translate_element">Change</div>
-            
             <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
                 <i class="fas fa-sun"></i>
             </button>
@@ -1387,19 +1373,6 @@
         </div>
     </footer>
 
-    <script type="text/javascript">
-        // --- GOOGLE TRANSLATE CONFIG ---
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'en',
-                includedLanguages: 'en,hi,or', 
-                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-                autoDisplay: false
-            }, 'google_translate_element');
-        }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
     <script>
         // --- SOUND EFFECT ---
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1649,6 +1622,3 @@
     </script>
 </body>
 </html>
-
-
-
