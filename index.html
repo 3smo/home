@@ -523,7 +523,8 @@
     <div id="home" class="tab-content active">
         
         <div class="hero-wrapper">
-            <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?q=80&w=1600&auto=format&fit=crop');"></div> 
+            <div class="slide active" style="background-image: url('images-path/landing-image.png');"></div> 
+			<div class="slide" style="background-image: url('https://images.unsplash.com/photo-1628088062854-d1870b4553da?q=80&w=1600&auto=format&fit=crop');"></div> 
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1600&auto=format&fit=crop');"></div> 
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop');"></div> 
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1600&auto=format&fit=crop');"></div> 
@@ -557,11 +558,11 @@
         <div class="stats-wrapper">
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-num">5000+</div>
+                    <div class="stat-num">101+</div>
                     <div class="stat-label">Happy Customers</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-num">150+</div>
+                    <div class="stat-num">55+</div>
                     <div class="stat-label">Verified Vendors</div>
                 </div>
                 <div class="stat-card">
@@ -1280,7 +1281,7 @@
             </div>
 
             <div class="founder-section card-anim-active">
-                <div class="founder-img" style="background-image: url('https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=400&auto=format&fit=crop');"></div> 
+                <div class="founder-img" style="background-image: url('images-path/ajit.jpg');"></div> 
                 <i class="fas fa-quote-left quote-icon"></i>
                 <p class="quote-text">"We are actually aiming and encouraging the authentic people of Khordha, who believe in consuming authentic products and also can provide authentic services to Khordha people. It's a continuous process to have a better society among us."</p>
                 <div style="font-weight: 700; color: var(--primary); letter-spacing: 1px;">FOUNDER, 3S MART ODISHA</div>
@@ -1327,23 +1328,23 @@
 
 			<div class="reg-option" onclick="openForm('register_customer')">
                 <div class="reg-icon"><i class="fas fa-shop"></i></div>
-                <div><h4>Customer Registration</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Sell Products</span></div>
+                <div><h4>Customer Registration</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Buy Products/Services</span></div>
             </div>
             <div class="reg-option" onclick="openForm('register_vendor')">
                 <div class="reg-icon"><i class="fas fa-shop"></i></div>
-                <div><h4>Vendor Registration</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Sell Products</span></div>
+                <div><h4>Vendor Registration</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Sell Products/Services</span></div>
             </div></a>
             <div class="reg-option" onclick="openForm('register_service')">
                 <div class="reg-icon"><i class="fas fa-tools"></i></div>
-                <div><h4>Service Partner</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Electrician, Plumber</span></div>
+                <div><h4>Service Partner</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Electrician, Plumber, Carpenter Etc</span></div>
             </div>
             <div class="reg-option" onclick="openForm('register_edu')">
                 <div class="reg-icon"><i class="fas fa-chalkboard-user"></i></div>
-                <div><h4>Tutor / Institute</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Register Academy</span></div>
+                <div><h4>Educationist</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Register Yourself</span></div>
             </div>
             <div class="reg-option" onclick="openForm('register_job')">
                 <div class="reg-icon"><i class="fas fa-user-graduate"></i></div>
-                <div><h4>Job Seeker</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Submit CV</span></div>
+                <div><h4>Job Seeker</h4><span style="color: var(--text-muted); font-size: 0.8rem;">Submit Your CV</span></div>
             </div>
         </main>
     </div>
@@ -1486,16 +1487,16 @@
         // --- LINKS & MODAL LOGIC ---
         const links = {
             'medicine': '#',
-            'milk': '#', 'veg': 'vfgorder.html', 'food': 'foodorder.html', 'solar': '#', 'consultant': '#',
+            'milk': 'vfgorder.html', 'veg': 'vfgorder.html', 'food': 'foodorder.html', 'solar': '#', 'consultant': '#',
             'travel': '#', 'electrician': 'servicerequest.html', 'plumber': 'servicerequest.html', 'janaseva': '#',
-            'yoga': '#', 'school': '#', 'computer': '#', 'tuition': '#',
+            'yoga': '#', 'school': '#', 'computer': 'www.kalingavikash.com', 'tuition': '#',
             'carpenter': 'servicerequest.html', 'ro': 'servicerequest.html', 'interior': 'servicerequest.html', 'tile': '#', 
             'civil': 'servicerequest.html', 'bike': 'servicerequest.html', 'it': '#',
             'register_customer': 'register.html',
 			'register_vendor': 'register.html',
 			'register_service': '#', 
 			'register_job': '#', 
-			'register_edu': '#'
+			'register_edu': 'https://forms.gle/a8Uwo2GbzaBxwQFGA'
         };
 
         const modal = document.getElementById('customModal');
@@ -1568,7 +1569,8 @@
 
         // --- FIXED SLIDER LOGIC ---
         const slideData = [
-            { tag: "Health & Nutrition", title: "Morning Purity.", desc: "Fresh Omfed & Farm Milk delivered by 7 AM." },
+            { tag: "Namaskaar Khordha...!", title: "Let's work together for the betterment of our Khordha", desc: "Authentic Products and Services Are Our Focus" },
+			{ tag: "Health & Nutrition", title: "Morning Purity.", desc: "Fresh Omfed & Farm Milk delivered by 7 AM." },
             { tag: "Fresh Market", title: "Green Vegetables.", desc: "Direct from Khordha Haat. Washed & Sorted." },
             { tag: "Education Hub", title: "Skills & Knowledge.", desc: "School, Computer & Coaching Centers." },
             { tag: "Essential Services", title: "Home Repair.", desc: "Electrician, Plumber, Carpenter & More." },
@@ -1627,7 +1629,6 @@
     </script>
 </body>
 </html>
-
 
 
 
